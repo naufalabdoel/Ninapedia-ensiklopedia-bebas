@@ -34,6 +34,24 @@ Database dilindungi oleh aturan keamanan yang ketat (`firestore.rules`):
 * **Backend & Database:** Firebase Authentication (Email/Password), Google Cloud Firestore.
 * **Ikon & Aset:** SVG kustom berkualitas tinggi.
 
+## Instalasi & Setup Lokal
+Ikuti langkah-langkah berikut untuk menjalankan Ninapedia di mesin lokal Anda:
+1. Kloning Repositori
+git clone [https://github.com/username/ninapedia.git](https://github.com/username/ninapedia.git)
+cd ninapedia
+2.Instal Dependensi
+npm install
+3.Konfigurasi Firebase
+- Buat proyek baru di Firebase Console.
+- Aktifkan layanan Authentication (Email/Password) dan Firestore Database.
+- Salin konfigurasi Firebase Anda dan letakkan di dalam file .env atau langsung sesuaikan di src/lib/firebase.ts.
+- Deploy aturan keamanan Firestore: 
+firebase deploy --only firestore:rules
+4. Jalankan Development Server
+npm run dev
+Aplikasi akan berjalan di http://localhost:5173 (atau port default Vite/React Anda).
+
+
 ## 📁 Struktur Direktori Utama
 
 ```text
@@ -53,23 +71,3 @@ Database dilindungi oleh aturan keamanan yang ketat (`firestore.rules`):
 ├── firestore.rules             # Aturan keamanan database Firestore
 ├── firebase-blueprint.json     # Cetak biru arsitektur Firebase
 └── package.json
-
-🚀 Instalasi & Setup Lokal
-Ikuti langkah-langkah berikut untuk menjalankan Ninapedia di mesin lokal Anda:
-1. Kloning Repositori
-git clone [https://github.com/username/ninapedia.git](https://github.com/username/ninapedia.git)
-cd ninapedia
-2.Instal Dependensi
-npm install
-3.Konfigurasi Firebase
-- Buat proyek baru di Firebase Console.
-- Aktifkan layanan Authentication (Email/Password) dan Firestore Database.
-- Salin konfigurasi Firebase Anda dan letakkan di dalam file .env atau langsung sesuaikan di src/lib/firebase.ts.
-- Deploy aturan keamanan Firestore:
-firebase deploy --only firestore:rules
-4. Jalankan Development Server
-npm run dev
-Aplikasi akan berjalan di http://localhost:5173 (atau port default Vite/React Anda).
-
-MIT License
-naufalabdoel 2026
