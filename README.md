@@ -2,6 +2,10 @@
 
 Ninapedia adalah sebuah aplikasi web ensiklopedia bebas berbasis React yang terinspirasi dari Wikipedia. Proyek ini dirancang dengan antarmuka pengguna yang bersih, responsif, dan interaktif, lengkap dengan dukungan mode gelap (dark mode), pengaturan tata letak dinamis, serta sistem autentikasi pengguna yang otentik.
 
+
+<img src="(https://github.com/naufalabdoel/Ninapedia-Ensiklopedia/blob/main/ss%20full%20page%20preview%20.png)" alt="Website Fullpage Preview" width="100%">
+------
+
 ## ✨ Fitur Utama
 
 ### 1. Sistem Autentikasi "Wikipedia Vibe"
