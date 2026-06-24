@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------
+   DARK MODE OVERRIDES
+   ------------------------------------------------------------- */
+.dark,
+.dark body,
+.dark #root {
+  background-color: #1a1d20 !important;
+  color: #eaecf0 !important;
+}
+
+/* Custom links in dark mode */
+.dark a,
+.dark .text-\[\#0645ad\],
+.dark .text-blue-700 {
+  color: #6699ff !important;
+}
+.dark a:hover,
+.dark .text-\[\#0645ad\]:hover,
+.dark .text-blue-700:hover {
+  text-decoration: underline;
+  color: #85b3ff !important;
+}
+
+/* Background containers and sections */
+.dark .bg-white,
+.dark header,
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-\[\#f8f9fa\],
+.dark .bg-\[\#eaecf0\] {
+  background-color: #202428 !important;
+  color: #eaecf0 !important;
+}
+
+.dark header {
+  border-bottom-color: #3a3f47 !important;
+}
+
+/* Sidebar borders & backgrounds */
+.dark aside,
+.dark .border-r,
+.dark .border-l,
+.dark .border-t,
+.dark .border-b,
+.dark .border {
+  border-color: #323842 !important;
+}
+
+/* Specific elements on the front page and articles */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700,
+.dark .text-black,
+.dark span.text-black {
+  color: #f8f9fa !important;
+}
+
+.dark .text-gray-500,
+.dark .text-gray-600 {
+  color: #a2a9b1 !important;
+}
+
+/* Search Input */
+.dark input[type="text"],
+.dark input {
+  background-color: #282e38 !important;
+  color: #ffffff !important;
+  border-color: #444c56 !important;
+}
+
+.dark input::placeholder {
+  color: #8c95a0 !important;
+}
+
+/* Autocomplete suggestion popups and modals */
+.dark .shadow-\[0_4px_16px_rgba\(0\2c 0\2c 0\2c 0\.15\)\],
+.dark .bg-white\/95 {
+  background-color: #202428 !important;
+  border-color: #444c56 !important;
+}
+
+.dark .hover\:bg-gray-100:hover,
+.dark .hover\:bg-gray-50:hover,
+.dark .bg-gray-100,
+.dark .bg-gray-50 {
+  background-color: #282e38 !important;
+}
+
+/* Buttons and badge colors */
+.dark button.bg-\[\#f8f9fa\],
+.dark .bg-\[\#f8f9fa\] {
+  background-color: #282e38 !important;
+  color: #ffffff !important;
+  border-color: #444c56 !important;
+}
+.dark button.bg-\[\#f8f9fa\]:hover {
+  background-color: #303642 !important;
+}
+
+/* Table and infobox backgrounds */
+.dark table,
+.dark .bg-\[\#f5f5f5\],
+.dark .bg-\[\#eaecf0\] {
+  background-color: #242930 !important;
+  border-color: #3a3f47 !important;
+}
+
+/* Footer elements */
+.dark footer {
+  border-top-color: #323842 !important;
+  color: #a2a9b1 !important;
+}
+
+.dark footer .text-gray-600,
+.dark footer .text-gray-500 {
+  color: #a2a9b1 !important;
+}
+
+/* Left main menu sidebar */
+.dark .border-r {
+  border-right-color: #323842 !important;
+}
+
+/* Lightbox overlay and popup */
+.dark .bg-black\/80 {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}

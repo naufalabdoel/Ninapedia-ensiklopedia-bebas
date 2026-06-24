@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    
+    function incoming() { 
+      return request.resource.data; 
+    }
+    
+    function existing() { 
+      return resource.data; 
+    }
+    
+    function isSignedIn() { 
+      return request.auth != null; 
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['username', 'email', 'createdAt', 'authMethod'])
+        && (data.keys().size() == 4 
+            || (data.keys().size() == 5 && ('uid' in data || 'password' in data))
+            || (data.keys().size() == 6 && 'uid' in data && 'password' in data))
+        && data.username is string
+        && data.username.size() >= 3
+        && data.username.size() <= 100
+        && data.email is string
+        && (data.email.size() == 0 || (data.email.size() >= 3 && data.email.size() <= 200))
+        && data.createdAt is string
+        && data.createdAt.size() <= 100
+        && (data.authMethod == 'email_password' || data.authMethod == 'google_real')
+        && (!('uid' in data) || (data.uid is string && data.uid.size() <= 128))
+        && (!('password' in data) || (data.password is string && data.password.size() <= 128));
+    }
+
+    match /users/{userId} {
+      // Allow single document lookups for login/registration check
+      allow get: if isValidId(userId);
+      
+      // Prohibit collection listing to prevent user list harvesting
+      allow list: if false;
+
+      // Allow creating user documents
+      allow create: if isValidId(userId) && isValidUser(incoming()) && (
+        // Case A: Google sign-in (must be authenticated as the matching user)
+        (incoming().authMethod == 'google_real' && isSignedIn() && request.auth.uid == userId && incoming().uid == request.auth.uid) ||
+        // Case B: Local email/password registration (unauthenticated in Firebase)
+        (incoming().authMethod == 'email_password')
+      );
+
+      // Only Google authenticated users can update their own documents
+      allow update: if isValidId(userId) && isSignedIn() && request.auth.uid == userId && isValidUser(incoming()) && (
+        // Protect immutable fields from modifications
+        incoming().createdAt == existing().createdAt &&
+        incoming().authMethod == existing().authMethod &&
+        (!('uid' in existing()) || incoming().uid == existing().uid)
+      );
+
+      // Deny deletes entirely to keep user profiles intact
+      allow delete: if false;
+    }
+  }
+}

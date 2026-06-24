@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile containing credentials and meta info",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The unique identifier of the user if authenticated via Google"
+        },
+        "username": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password used for basic email auth"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the user account was created"
+        },
+        "authMethod": {
+          "type": "string",
+          "enum": ["email_password", "google_real"],
+          "description": "The method of authentication used"
+        }
+      },
+      "required": ["username", "email", "createdAt", "authMethod"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user account details and credentials"
+    }
+  }
+}
